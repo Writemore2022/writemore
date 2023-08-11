@@ -14,12 +14,12 @@ public class HelloController {
     private ArticleRepository articleRepository ;
     @Autowired
     public HelloController(ArticleRepository articleRepository){this.articleRepository=articleRepository;}
-    @GetMapping("/")
-    public Article hello(){
-        Article art =new Article(1L,1L,"jaehyeon","writemore","title","content");
-        articleRepository.save(art);
-        return art;
-    }
+//    @GetMapping("/")
+//    public Article hello(){
+//        Article art =new Article(1L,1L,"jaehyeon","writemore","title","content");
+//        articleRepository.save(art);
+//        return art;
+//    }
 
     @GetMapping("/delete")
     public String deleteA(){

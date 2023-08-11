@@ -16,30 +16,32 @@ import java.util.Date;
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="ARTICLE_ID") //칼럼 이름 재설정
+    @Column(name="article_id") //칼럼 이름 재설정
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name="member_id")
+    private Member writer;
+    @ManyToOne //One to one을 써도 되는지 모르겠음
+    @JoinColumn(name="group_id") //얘는 대상이 mappedby를 해야 함
+    private Group team;
     @Column
-    Long memberId;
+    private String memberName;
     @Column
-    Long groupId;
+    private String groupName;
     @Column
-    String memberName;
+    private String title;
     @Column
-    String groupName;
+    private String content;
     @Column
-    String title;
+    private Date createdAt;
     @Column
-    String content;
-    @Column
-    Date createdAt;
-    @Column
-    Date modifiedAt;
+    private Date modifiedAt;
 
     //POST용
-    public Article(Long memberId, Long groupId, String memberName, String groupName, String title, String content) {
-        this.memberId=memberId;
-        this.groupId = groupId;
+    public Article(Member member, Group group, String memberName, String groupName, String title, String content) {
+        this.writer=member;
+        this.team = group;
         this.memberName = memberName;
         this.groupName = groupName;
         this.title = title;
@@ -49,10 +51,10 @@ public class Article {
     }
 
     //PUT,PATCH용
-    public Article(Long id, Long memberId, Long groupId, String memberName, String groupName, String title, String content) {
+    public Article(Long id, Member member, Group group, String memberName, String groupName, String title, String content) {
         this.id=id;
-        this.memberId=memberId;
-        this.groupId = groupId;
+        this.writer=member;
+        this.team = group;
         this.memberName = memberName;
         this.groupName = groupName;
         this.title = title;

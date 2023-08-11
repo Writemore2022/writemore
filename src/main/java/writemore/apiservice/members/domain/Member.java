@@ -1,18 +1,21 @@
 package writemore.apiservice.members.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.sql.Date;
-
-@Data
+@Getter
+@Entity
+@NoArgsConstructor
 @AllArgsConstructor
 public class Member {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="member_id")
+    private Long id;
     private String memberName;
-    private Long memberId;
+
     private String loginId;
     private String password;
     private String email;

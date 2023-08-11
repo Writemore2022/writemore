@@ -3,14 +3,16 @@ package writemore.apiservice.members.util;
 import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import writemore.apiservice.members.domain.Article;
+import writemore.apiservice.members.domain.Group;
+import writemore.apiservice.members.domain.Member;
 
 import java.util.Date;
 
 @AllArgsConstructor
 public class ArticleDto {
     Long id;
-    Long memberId;
-    Long groupId;
+    Member member;
+    Group group;
     String memberName;
     String groupName;
     String title;
@@ -19,6 +21,6 @@ public class ArticleDto {
     Date modifiedAt;
 
     public Article toEntity(){
-        return new Article(memberId,groupId,memberName,groupName,title,content);
+        return new Article(member,group,memberName,groupName,title,content);
     }
 }
