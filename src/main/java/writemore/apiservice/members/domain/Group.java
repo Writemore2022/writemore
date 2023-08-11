@@ -18,7 +18,7 @@ public class Group {
     private Long id;
     @ManyToOne
     @JoinColumn(name="member_id")
-    private Member teammate;
+    private Member leader;
 
     @Column
     private String groupContent;
@@ -26,4 +26,19 @@ public class Group {
     private String groupName;
     @Column
     private Date startDate;
+
+    public Group(Member leader, String groupContent, String groupName) {
+        this.leader = leader;
+        this.groupContent = groupContent;
+        this.groupName = groupName;
+        this.startDate=new Date();
+    }
+
+    public Group(Long id,String groupContent) {
+        this.id = id;
+        this.groupContent = groupContent;
+    }
+
+    public void patch(Group group) {
+    }
 }
